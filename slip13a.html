@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="markSheetApp">
+
+<head>
+    <title>Student Marksheet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script >var app = angular.module('markSheetApp', []);
+
+        app.controller('MarkSheetController', function ($scope) {
+            $scope.student = {
+                rollNo: '',
+                name: '',
+                className: '',
+                subject1: 0,
+                subject2: 0,
+                subject3: 0,
+            };
+        
+            $scope.markSheet = {};
+        
+            $scope.calculateMarks = function () {
+                $scope.markSheet = {
+                    rollNo: $scope.student.rollNo,
+                    name: $scope.student.name,
+                    className: $scope.student.className,
+                    subject1: $scope.student.subject1,
+                    subject2: $scope.student.subject2,
+                    subject3: $scope.student.subject3,
+                    total: $scope.student.subject1 + $scope.student.subject2 + $scope.student.subject3,
+                    percentage: (($scope.student.subject1 + $scope.student.subject2 + $scope.student.subject3) / 3).toFixed(2),
+                    grade: ''
+                };
+        
+                if ($scope.markSheet.percentage >= 80) {
+                    $scope.markSheet.grade = 'A';
+                } else if ($scope.markSheet.percentage >= 60) {
+                    $scope.markSheet.grade = 'B';
+                } else if ($scope.markSheet.percentage >= 40) {
+                    $scope.markSheet.grade = 'C';
+                } else {
+                    $scope.markSheet.grade = 'Fail';
+                }
+            };
+        });
+        </script>
+</head>
+
+<body ng-controller="MarkSheetController">
+    <h2>Student Details</h2>
+    <label>Roll no:</label>
+    <input type="text" ng-model="student.rollNo"><br>
+    <label>Student Name:</label>
+    <input type="text" ng-model="student.name"><br>
+    <label>Class:</label>
+    <input type="text" ng-model="student.className"><br>
+    <label>Subject 1:</label>
+    <input type="number" ng-model="student.subject1"><br>
+    <label>Subject 2:</label>
+    <input type="number" ng-model="student.subject2"><br>
+    <label>Subject 3:</label>
+    <input type="number" ng-model="student.subject3"><br>
+    <button ng-click="calculateMarks()">Calculate marks</button>
+    <h2>Mark Sheet</h2>
+    <p>Roll no: {{markSheet.rollNo}}</p>
+    <p>Student Name: {{markSheet.name}}</p>
+    <p>Class: {{markSheet.className}}</p>
+    <p>Subject 1: {{markSheet.subject1}}</p>
+    <p>Subject 2: {{markSheet.subject2}}</p>
+    <p>Subject 3: {{markSheet.subject3}}</p>
+    <p>Total: {{markSheet.total}}</p>
+    <p>Percentage: {{markSheet.percentage}}%</p>
+    <p>Grade: {{markSheet.grade}}</p>
+</body>
+
+</html>

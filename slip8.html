@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+    <head>
+        <title>Student Registraion Form</title>
+        
+    </head>
+    <body ng-controller="StudentController">
+        <h1>Student Registraion Form</h1>
+        <form name="registraionForm">
+            <label>First Name:</label>
+            <input type="text" ng-model="student.firstName" name="firstName" required ng-pattern="/^[a-zA-Z]+$/">
+            <span ng-show="registraionForm.firstName.$error.required">first name is required</span>
+            <span ng-show="registraionForm.firstName.$error.pattern">First name should only contain alphabets</span>
+
+            <label>Last Name:</label>
+            <input type="text" ng-model="student.lastName" name="lastName" required ng-pattern="/^[a-zA-Z]+$/">
+            <span ng-show="registraionForm.lastName.$error.required">last name is required</span>
+            <span ng-show="registraionForm.lastName.$error.pattern">last name should contain alphabets</span>
+
+            <label>Age:</label>
+            <input type="number" ng-model="student.age" name="age" required ng-min="18" ng-max="50">
+            <span ng-show="registraionForm.age.$error.required">Age is required</span>
+            <span ng-show="registraionForm.age.$error.min || registrationForm.age.$error.max">age should be between 18 and 50</span>
+        <button ng-click="submitForm()" ng-disabled="registraionForm.$invalid">Registration</button>
+        </form>
+        <div ng-show="greetingMessage">
+            <h2>{{ greetingMessage }}</h2>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script>
+            angular.module('studentApp',[])
+            .controller('StudentController',function($scope,$http)
+            {
+                $scope.student={};
+                $scope.submitForm=function()
+                {
+                    var currentTime= new Date();
+                    var currentHour = currentTime.getHours();
+                    if(currentHour>=5 && currentHour<12)
+                    {
+                        $scope.greetingMessage="good morning, "+$scope.student.firstName+"!";
+                    }
+                    else if (currentHour >= 12 && currentHour < 18) {
+                        $scope.greetingMessage = "Good Afternoon, " + $scope.student.firstName + "!";
+                    } else {
+                        $scope.greetingMessage = "Good Evening, " + $scope.student.firstName + "!";
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>

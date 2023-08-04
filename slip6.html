@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <script src="angularjs.min.js"></script>
+<body ng-app="myApp">
+<p>SYBBA CA SYLLABUS CBCS 2019 PATTERN"</p>
+<p><a href="#/!home!">Main Page</a></p>
+<ul>
+<li><a href="#!dm">CA 301 Digital Marketing</a><br></li>
+<li><a href="#!ds">CA 302 Data Structure</a><br></li>
+<li><a href="#!se">CA 303 Software Engineering</a><br></li>
+<li><a href="#!angular">CA 304 Angular JS </a><br></li>
+<li><a href="#!php">CA 304 PHP</a><br></li>
+<li><a href="#!bigdata">CA 305 bigdata</a><br></li>
+<li><a href="#!blockchain">CA 305 blockchain</a><br></li>
+</ul>
+<div ng-view></div>
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+$routeProvider
+.when("/", {
+templateUrl : "home.html"
+})
+.when("/dm", {
+templateUrl : "digitalmarketing.html"
+})
+.when("/ds", {
+templateUrl : "datastructure.html"
+})
+.when("/se", {
+templateUrl : "softwareengg.html"
+})
+.when("/angular", {
+templateUrl : "angular.html"
+})
+.when("/php", {
+templateUrl : "php.html"
+})
+.when("/bigdata", {
+templateUrl : "bigdata.html"
+})
+.when("/blockchain", {
+templateUrl : "blockchain.html"
+})
+});
+</script>
+</body>
+</html>

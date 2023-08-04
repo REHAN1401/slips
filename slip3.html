@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+    <script src="angularjs.min.js"></script>
+    <script>angular.module('myApp',[])
+    .controller('myController',function($scope)
+    {
+        $scope.students=[
+           { name:'rehan',age:18,grade:'A+'}
+        ];
+    });
+    </script>
+    </head>
+
+    <body>
+        <div ng-controller="myController">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Grade</th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="student in students">
+                        <td>{{student.name}}</td>
+                        <td>{{student.age}}</td>
+                        <td>{{student.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

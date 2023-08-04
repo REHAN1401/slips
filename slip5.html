@@ -1,0 +1,25 @@
+<html ng-app="myApp">
+    <head>
+        <script src=angularjs.min.js></script>
+    </head>
+    <body>
+        <div ng-controller="AdditionController">
+            <h2>Addition Example</h2>
+            <input type="number" ng-model="num1" placeholder="enter 1 number:">
+            <input type="number" ng-model="num2" placeholder="enter 2 number:">
+            <button ng-click="addnumber()" >Add</button>
+            <p ng-show="result:"<span ng-bind="result"></span></p>
+
+        </div>
+        <script>
+            angular.module('myApp',[])
+            .controller('AdditionController',function($scope)
+            {
+                $scope.addnumber=function()
+                {
+                    $scope.result=parseInt($scope.num1)+parseInt($scope.num2);
+                };
+            });
+        </script>
+    </body>
+</html>

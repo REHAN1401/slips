@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+    <script src=angularjs.min.js></script>
+    <script>
+        angular.module('myApp',[])
+        .controller('GameController',['$scope',function($scope) 
+        {
+            $scope.games=[];
+            $scope.displayGames=function()
+            {
+                $scope.games=['valo','pubg','subg'];
+            };
+        }
+    ]
+        );
+    </script>
+
+
+    <body>
+        <div ng-controller="GameController">
+            <H1>Game List</H1>
+            <button ng-click="displayGames()">Show Games</button>
+            <ul>
+                <li ng-repeat="games in games" ng-bind="games"></li>
+            </ul>
+        </div>
+    </body>
+</head>
+</html>

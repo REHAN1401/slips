@@ -1,0 +1,42 @@
+<html ng-app="bankApp">
+    <head>
+        <title>bank details</title>
+        <script src="angularjs.min.js"></script>
+        <script>
+            angular.module('bankApp',[])
+            .controller('BankController',function($scope)
+            {
+                $scope.banks=[
+                    {
+                    name:'bank a',
+                    micrcode:'1234',
+                    ifscode:'ASD',
+                    address:'add1'
+                    }
+                ];
+            });
+        </script>
+    </head>
+    <body>
+        <div ng-controller="BankController">
+            <H1>
+                bank details
+            </H1>
+            <table>
+                <tr><th>Name</th>
+                <th>MICR Code</th>
+                <th>IFC Code</th>
+                <th>Address</th>
+            </tr>
+            <tbody>
+                <TR ng-repeat="bank in banks">
+                    <td>{{bank.name}}</td>
+                    <td>{{ bank.micrcode }}</td>
+                    <td>{{ bank.ifscode }}</td>
+                    <td>{{ bank.address }}</td>
+                </TR>
+            </tbody>
+        </table>
+        </div>
+    </body>
+</html>

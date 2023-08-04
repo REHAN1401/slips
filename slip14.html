@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="bookingApp">
+
+<head>
+    <title>Booking App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>var app = angular.module('bookingApp', []);
+
+        app.controller('BookingController', function ($scope) {
+            $scope.customer = {
+                name: '',
+                address: '',
+                contactNo: '',
+                gender: 'male',
+                bookingDate: '',
+                journeyDate: '',
+                noOfPassengers: 1,
+                passengerNames: ''
+            };
+        
+            $scope.showTicket = false;
+        
+            $scope.generateTicket = function () {
+                $scope.showTicket = true;
+            };
+        });
+        </script>
+</head>
+
+<body ng-controller="BookingController">
+    <div ng-if="!showTicket">
+        <h2>Customer Information</h2>
+        <label>Name:</label>
+        <input type="text" ng-model="customer.name"><br>
+        <label>Address:</label>
+        <input type="text" ng-model="customer.address"><br>
+        <label>Contact No.:</label>
+        <input type="text" ng-model="customer.contactNo"><br>
+        <label>Gender:</label>
+        <select ng-model="customer.gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+        <label>Date of Booking:</label>
+        <input type="date" ng-model="customer.bookingDate"><br>
+        <label>Date of Journey:</label>
+        <input type="date" ng-model="customer.journeyDate"><br>
+        <label>No of Passengers:</label>
+        <input type="number" ng-model="customer.noOfPassengers"><br>
+        <label>Name of Passenger(s):</label>
+        <input type="text" ng-model="customer.passengerNames"><br>
+
+        <button ng-click="generateTicket()">Generate e-Ticket</button>
+    </div>
+
+    <div ng-if="showTicket">
+        <h2>e-Ticket</h2>
+        <p><strong>Name:</strong> {{ customer.name }}</p>
+        <p><strong>Address:</strong> {{ customer.address }}</p>
+        <p><strong>Contact No.:</strong> {{ customer.contactNo }}</p>
+        <p><strong>Gender:</strong> {{ customer.gender }}</p>
+        <p><strong>Date of Booking:</strong> {{ customer.bookingDate | date }}</p>
+        <p><strong>Date of Journey:</strong> {{ customer.journeyDate | date }}</p>
+        <p><strong>No of Passengers:</strong> {{ customer.noOfPassengers }}</p>
+        <p><strong>Name of Passenger(s):</strong> {{ customer.passengerNames }}</p>
+    </div>
+</body>
+
+</html>

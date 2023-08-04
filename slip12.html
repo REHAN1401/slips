@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="customerApp">
+
+<head>
+    <title>Customer Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script >var app = angular.module('customerApp', []);
+
+        app.controller('CustomerController', function ($scope) {
+            $scope.customer = {};
+            $scope.items = [
+                { name: 'Item A', quantity: 10, price: 20 },
+                { name: 'Item B', quantity: 5, price: 30 },
+                { name: 'Item C', quantity: 8, price: 15 },
+                // Add more items here
+            ];
+        
+            $scope.totalItems = 0;
+            $scope.totalAmount = 0;
+        
+            $scope.registerCustomer = function () {
+                // Process customer registration here
+                $scope.totalItems++;
+                $scope.totalAmount += $scope.customer.favoriteItem.price;
+            };
+        });
+         </script>
+</head>
+
+<body ng-controller="CustomerController">
+    <h1>Customer Registration</h1>
+
+    <form>
+        <label>Name:</label>
+        <input type="text" ng-model="customer.name" required><br>
+
+        <label>Contact No.:</label>
+        <input type="text" ng-model="customer.contactNo" required><br>
+
+        <label>Gender:</label>
+        <select ng-model="customer.gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+
+        <label>Favourite Item:</label>
+        <select ng-model="customer.favoriteItem" ng-options="item.name for item in items" required>
+            <option value="">Select an item</option>
+        </select><br>
+
+        <label>Suggestions:</label>
+        <textarea ng-model="customer.suggestions"></textarea><br>
+
+        <button ng-click="registerCustomer()">Register</button>
+    </form>
+
+    <div>
+        <h2>Bill</h2>
+        <p>Total Items Selected: {{ totalItems }}</p>
+        <p>Total Amount to be Paid: {{ totalAmount | currency }}</p>
+    </div>
+</body>
+
+</html>
